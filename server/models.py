@@ -3,6 +3,13 @@ from django.utils import timezone
 
 
 class Server(models.Model):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        log = Log.objects.filter(server=self)
+        if not log:
+            l = Log(server=self, date=timezone.now(), is_online=True)
+            l.save()
+
     ip = models.CharField(max_length=15)
     name = models.CharField(max_length=255)
 
