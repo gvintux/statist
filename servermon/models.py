@@ -38,7 +38,7 @@ class Event(models.Model):
             if not last_offline_event:
                 return None
             delta = self.date - last_offline_event.date
-            return delta
+            return str(delta).split('.', maxsplit=1)[0]
         else:
             last_online_event = Event.objects.all().filter(server=self.server).filter(is_online=True).filter(
                 date__lt=self.date).last()
@@ -46,20 +46,20 @@ class Event(models.Model):
                 return None
             delta = self.date - last_online_event.date
             #delta_from_now = datetime.now() - self.date
-            return delta
+            return str(delta).split('.', maxsplit=1)[0]
         return None
 
     def failure_time(self):
         if self.is_online:
             return None
         last_online_event = Event.objects.all().filter(server=self.server).filter(is_online=True).filter(
-            date__gt=self.date).last()
+            date__gt=self.date).first()
         delta = None
         if not last_online_event:
             delta = datetime.now() - self.date
         else:
             delta = last_online_event.date - self.date
-        return delta
+        return str(delta).split('.', maxsplit=1)[0]
 
     def __str__(self):
         return '  %s ' % self.date + self.server.__str__()
