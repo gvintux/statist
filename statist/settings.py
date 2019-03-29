@@ -24,7 +24,7 @@ SECRET_KEY = 'cnd(##$tz-8m*1(phn#(#kqtyyhh(p6lk#g884vb7-vpj38q6='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.16.6.240']
 
 # Application definition
 
@@ -113,10 +113,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'tuxpenguin@list.ru'
-EMAIL_HOST_PASSWORD = 'u2kxputtSS'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'okt@amgpgu.ru'
+EMAIL_HOST_PASSWORD = '0qh1z6gp'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465

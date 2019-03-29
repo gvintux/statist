@@ -16,7 +16,7 @@ class EventAdmin(admin.ModelAdmin):
 
     # delta_time.admin_order_field = 'date'
     delta_time.short_description = 'Дельта (мин)'
-    delta_time.empty_value_display = 'Впервые'
+    #delta_time.empty_value_display = 'Впервые'
 
     def failure_time(self, obj):
         return obj.failure_time()

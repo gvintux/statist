@@ -23,7 +23,6 @@ class Command(BaseCommand):
         arised_server_list = []
         for s in servers:
             ping_result = ping(s.ip, count)
-            self.stdout.write(self.style.SUCCESS(str(ping_result)))
             log = Event.objects.filter(server=s).last()
             if ping_result:
                 if log.is_online != ping_result:
