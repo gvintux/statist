@@ -1,2 +1,3 @@
-cd /opt/statist
-python3 manage.py updateserverstate
+#!/usr/bin/env bash
+INSTALL_PATH=/opt/statist
+python3 ${INSTALL_PATH}/manage.py updateserverstate
