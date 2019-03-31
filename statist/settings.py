@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+from .email_config import *
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,7 +26,7 @@ SECRET_KEY = 'cnd(##$tz-8m*1(phn#(#kqtyyhh(p6lk#g884vb7-vpj38q6='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.6.240']
+ALLOWED_HOSTS = ['172.16.6.240', '127.0.0.1']
 
 # Application definition
 
@@ -115,9 +117,4 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'okt@amgpgu.ru'
-EMAIL_HOST_PASSWORD = '0qh1z6gp'
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
