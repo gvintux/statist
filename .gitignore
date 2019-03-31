@@ -62,3 +62,6 @@ target/
 
 # email credentials
 statist/email_config.py
+
+# SQLite database
+db.sqlite3
