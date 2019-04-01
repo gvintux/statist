@@ -9,9 +9,9 @@ from datetime import datetime
 def ping(ip: str, num: str) -> bool:
     """Executes ping command
 
-    If ping invocation was successful then system method would return 0 therefore we return negation of that value
+        If ping invocation was successful then system method would return 0 therefore we return negation of that value
 
-    Command invocation is unix-specific
+        Command invocation is unix-specific
 
     Parameters:
         ip (str): The ip address of target server
@@ -36,9 +36,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Handles custom command action
 
-            Parameters:
-                args (list): a list of args
-                options (dict): a dict of options
+        Parameters:
+            args (list): a list of args
+            options (dict): a dict of options
         """
         count = options['c']
         servers = Server.objects.all()
@@ -60,7 +60,9 @@ class Command(BaseCommand):
                 Event(server=s, date=datetime.now(), is_online=ping_result).save()
                 # append server to failed list
                 failed_server_list.append(s)
-        title = 'Состояние серверов на ' + str(datetime.now())
+        # construct email subject
+        subject = 'Состояние серверов на ' + str(datetime.now())
+        # construct email content
         report = ''
         if len(failed_server_list) > 0:
             report = report + 'Сервера офлайн\n'
@@ -73,9 +75,9 @@ class Command(BaseCommand):
             for s in arised_server_list:
                 log = Event.objects.filter(server=s).last()
                 report = report + log.__str__()
-        if len(failed_server_list) > 0 or len(arised_server_list):
+        if len(failed_server_list) or len(arised_server_list)>0:
             mailing_list = Mailing.objects.all()
             emails = []
             for item in mailing_list:
                 emails.append(item.address)
-            send_mail(title, report, EMAIL_HOST_USER, emails, fail_silently=False)
+            send_mail(subject, report, EMAIL_HOST_USER, emails, fail_silently=False)
