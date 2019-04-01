@@ -37,10 +37,10 @@ class Server(models.Model):
 class Event(models.Model):
     """Event model
 
-        Attributes:
-            server: Server ForeignKey related to the event
-            date: DateTimeField when the event was occured
-            is_online: BooleanField whether server is online
+    Attributes:
+        server: Server ForeignKey related to the event
+        date: DateTimeField when the event was occured
+        is_online: BooleanField whether server is online
     """
     server = models.ForeignKey(Server, on_delete=models.CASCADE, verbose_name='сервер')
     server.help_text = 'Выберите сервер из списка'
@@ -52,7 +52,7 @@ class Event(models.Model):
     def delta_time(self):
         """Calculates how long server was in previous state till current
 
-            Returns:
+        Returns:
             string: time delta without microseconds
         """
         delta = None
@@ -73,8 +73,8 @@ class Event(models.Model):
     def failure_time(self):
         """Calculates how long offline server is in failure state
 
-            Returns:
-                string: time delta without microseconds
+        Returns:
+            string: time delta without microseconds
         """
         if self.is_online:
             return None
@@ -100,8 +100,8 @@ class Event(models.Model):
 class Mailing(models.Model):
     """Mailing model
 
-        Attributes:
-            address: EmailField where to send notifications
+    Attributes:
+        address: EmailField where to send notifications
     """
     address = models.EmailField(verbose_name='адрес')
     address.help_text = 'Укажите адрес электронной почты'
