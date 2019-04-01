@@ -64,18 +64,18 @@ class Command(BaseCommand):
         subject = 'Состояние серверов на ' + str(datetime.now())
         # construct email content
         report = ''
-        if len(failed_server_list) > 0:
+        if len(failed_server_list):
             report = report + 'Сервера офлайн\n'
             for s in failed_server_list:
                 log = Event.objects.filter(server=s).last()
                 report = report + log.__str__()
             report += '\n'
-        if len(arised_server_list) > 0:
+        if len(arised_server_list):
             report = report + 'Сервера онлайн\n'
             for s in arised_server_list:
                 log = Event.objects.filter(server=s).last()
                 report = report + log.__str__()
-        if len(failed_server_list) or len(arised_server_list)>0:
+        if len(failed_server_list) or len(arised_server_list):
             mailing_list = Mailing.objects.all()
             emails = []
             for item in mailing_list:
