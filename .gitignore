@@ -65,3 +65,7 @@ statist/email_config.py
 
 # SQLite database
 db.sqlite3
+
+# Database migrations
+
+servermon/migrations/*
